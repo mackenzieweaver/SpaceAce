@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://frnk4p3unksr"]
+[gd_scene format=3 uid="uid://frnk4p3unksr"]
 
 [ext_resource type="Script" uid="uid://c2i8w8h1oaq1b" path="res://Scenes/World/World.gd" id="1_87yka"]
 [ext_resource type="Texture2D" uid="uid://bx1hrtr7l3g5p" path="res://Assets/Images/HDR_galactic_plane_hazy_nebulae.hdr" id="1_xf6vi"]
 [ext_resource type="AudioStream" uid="uid://bkfgq024vhv3d" path="res://Assets/Audio/tense-suspense-background-music-375570.mp3" id="5_hveh7"]
 [ext_resource type="AudioStream" uid="uid://bvk67n8u20soc" path="res://Assets/Audio/tense-suspense-background-music-376385.mp3" id="6_87yka"]
+[ext_resource type="PackedScene" uid="uid://gtsnv33a1cye" path="res://Scenes/Player/Player.tscn" id="7_87yka"]
 [ext_resource type="PackedScene" uid="uid://b5s5dito4uyp1" path="res://Scenes/Spawner/Spawner.tscn" id="8_kjd5s"]
 [ext_resource type="PackedScene" uid="uid://2gv3qb8l4xt0" path="res://Scenes/GameUi/GameUi.tscn" id="11_0d0er"]
 
@@ -24,29 +25,32 @@ stream_count = 2
 stream_0 = ExtResource("5_hveh7")
 stream_1 = ExtResource("6_87yka")
 
-[node name="World" type="Node"]
+[node name="World" type="Node" unique_id=1467749879]
 script = ExtResource("1_87yka")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=621998848]
 transform = Transform3D(-0.9921147, 0.068444654, 0.10499392, 0, -0.8377188, 0.54610187, 0.12533313, 0.54179573, 0.83111316, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=664773718]
 environment = SubResource("Environment_gjpho")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1762118898]
 stream = SubResource("AudioStreamPlaylist_kjd5s")
 volume_db = -10.0
 autoplay = true
 
-[node name="Spawner" parent="." instance=ExtResource("8_kjd5s")]
+[node name="Spawner" parent="." unique_id=5313595 instance=ExtResource("8_kjd5s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
 
-[node name="GameUi" parent="." instance=ExtResource("11_0d0er")]
+[node name="GameUi" parent="." unique_id=1432318787 instance=ExtResource("11_0d0er")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1712308368]
+transform = Transform3D(1, 0, 0, 0, 0.9998038, 0.019808248, 0, -0.019808248, 0.9998038, 0, 2.3953073, 9.353167)
 
-[node name="TestTimer" type="Timer" parent="."]
+[node name="TestTimer" type="Timer" parent="." unique_id=1807130347]
 wait_time = 3.0
 autostart = true
+
+[node name="Player" parent="." unique_id=525250477 instance=ExtResource("7_87yka")]
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
