@@ -12,4 +12,4 @@ class_name GameUi
 
 
 func _ready() -> void:
-	get_tree().paused = false	
+	get_tree().paused = false
