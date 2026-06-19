@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bvk67n8u20soc" path="res://Assets/Audio/tense-suspense-background-music-376385.mp3" id="6_87yka"]
 [ext_resource type="PackedScene" uid="uid://gtsnv33a1cye" path="res://Scenes/Player/Player.tscn" id="7_87yka"]
 [ext_resource type="PackedScene" uid="uid://b5s5dito4uyp1" path="res://Scenes/Spawner/Spawner.tscn" id="8_kjd5s"]
+[ext_resource type="PackedScene" uid="uid://bdhgggt75cro3" path="res://Scenes/VFX/ShadedWall.tscn" id="8_p7pgw"]
 [ext_resource type="PackedScene" uid="uid://2gv3qb8l4xt0" path="res://Scenes/GameUi/GameUi.tscn" id="11_0d0er"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j0p05"]
@@ -24,6 +25,17 @@ glow_enabled = true
 stream_count = 2
 stream_0 = ExtResource("5_hveh7")
 stream_1 = ExtResource("6_87yka")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kjd5s"]
+plane = Plane(0, -1, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_p7pgw"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kuxid"]
+plane = Plane(1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ng1ea"]
+plane = Plane(-1, 0, 0, 0)
 
 [node name="World" type="Node" unique_id=1467749879]
 script = ExtResource("1_87yka")
@@ -52,5 +64,39 @@ wait_time = 3.0
 autostart = true
 
 [node name="Player" parent="." unique_id=525250477 instance=ExtResource("7_87yka")]
+
+[node name="Walls" type="Node3D" parent="." unique_id=1331782833]
+
+[node name="ShadedWallTop" parent="Walls" unique_id=836710790 instance=ExtResource("8_p7pgw")]
+transform = Transform3D(-2.1855695e-07, -5, -2.1855695e-07, 0, -2.1855695e-07, 5, -5, 2.1855695e-07, 9.553427e-15, 2.175, 40, 0)
+check_distance_y = true
+
+[node name="ShadedWallBottom" parent="Walls" unique_id=2129687585 instance=ExtResource("8_p7pgw")]
+transform = Transform3D(-2.1855695e-07, -5, -2.1855695e-07, 0, -2.1855695e-07, 5, -5, 2.1855695e-07, 9.553427e-15, 2.175, -40, 0)
+check_distance_y = true
+
+[node name="ShadedWallLeft" parent="Walls" unique_id=1231837027 instance=ExtResource("8_p7pgw")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -40, 0, 0)
+
+[node name="ShadedWallRight" parent="Walls" unique_id=405328020 instance=ExtResource("8_p7pgw")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 43.294895, 0, 0)
+
+[node name="WallCollider" type="StaticBody3D" parent="Walls" unique_id=334351185]
+
+[node name="CollisionShapeTop" type="CollisionShape3D" parent="Walls/WallCollider" unique_id=965364388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
+shape = SubResource("WorldBoundaryShape3D_kjd5s")
+
+[node name="CollisionShapeBottom" type="CollisionShape3D" parent="Walls/WallCollider" unique_id=1974678806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0)
+shape = SubResource("WorldBoundaryShape3D_p7pgw")
+
+[node name="CollisionShapeLeft" type="CollisionShape3D" parent="Walls/WallCollider" unique_id=967570088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_kuxid")
+
+[node name="CollisionShapeRight" type="CollisionShape3D" parent="Walls/WallCollider" unique_id=1118950253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_ng1ea")
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
