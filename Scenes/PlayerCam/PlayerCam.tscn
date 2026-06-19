@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://hlwcgwybqjkr"]
+
+[ext_resource type="Script" uid="uid://cw8cssdh8wecv" path="res://Scenes/PlayerCam/PlayerCam.gd" id="1_epwlq"]
+[ext_resource type="PackedScene" uid="uid://dbx4srq242e5i" path="res://Scenes/PlayerRef/PlayerRef.tscn" id="2_f5wm7"]
+
+[node name="PlayerCam" type="Camera3D" unique_id=1660530946]
+transform = Transform3D(1, 0, 0, 0, 0.9998038, 0.019808248, 0, -0.019808248, 0.9998038, 0, 0, 0)
+script = ExtResource("1_epwlq")
+
+[node name="PlayerRef" parent="." unique_id=1718269293 instance=ExtResource("2_f5wm7")]
