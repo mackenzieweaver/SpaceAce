@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://djqjpd2uqs5wb"]
+
+[ext_resource type="Script" uid="uid://b58w3uwdr6gvj" path="res://Scenes/Gun/Gun.gd" id="1_vfcdm"]
+
+[node name="Gun" type="Node3D" unique_id=1523439087]
+script = ExtResource("1_vfcdm")
+
+[node name="Effect" type="AudioStreamPlayer3D" parent="." unique_id=1971083068]
