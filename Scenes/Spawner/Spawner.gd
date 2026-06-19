@@ -3,16 +3,31 @@ extends Node3D
 
 class_name Spawner
 
+const IMPACT_FLASH = preload("res://Scenes/VFX/ImpactFlash/ImpactFlash.tscn")
+
+
+enum SceneNames { ImpactFlash }
+const SCENES: Dictionary[int, PackedScene] = {
+	SceneNames.ImpactFlash: IMPACT_FLASH,
+}
+
 
 @export var x_range: Vector2 = Vector2(-20, 20)
 @export var y_range: Vector2 = Vector2(-20, 20)
 @export var enabled: bool = true
+
+
 @onready var tie_timer: Timer = $TieTimer
 @onready var asteroid_timer: Timer = $AsteroidTimer
 
 
+func on_spawn(pos: Vector3, scn: SceneNames):
+	var scene = SCENES[scn].instantiate()
+	call_deferred("add_with_position", scene, pos)
+
+
 func _ready() -> void:
-	pass
+	SignalHub.spawn.connect(on_spawn)
 
 
 func add_with_transform(ob: Node3D, p_tr: Transform3D) -> void:

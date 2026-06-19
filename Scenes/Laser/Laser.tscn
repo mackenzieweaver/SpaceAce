@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cjgs51mk038ab"]
+
+[ext_resource type="Script" uid="uid://c2fkxnf226ocl" path="res://Scenes/Laser/Laser.gd" id="1_g6hyc"]
+[ext_resource type="PackedScene" uid="uid://iws2vud6j45k" path="res://Scenes/LifeTimer/LifeTimer.tscn" id="1_nhk4o"]
+
+[node name="Laser" type="Area3D" unique_id=2018984345]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_g6hyc")
+
+[node name="LifeTimer" parent="." unique_id=1288814663 instance=ExtResource("1_nhk4o")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=466616501]
+
+[node name="ImpactPoint" type="Marker3D" parent="." unique_id=1558822194]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

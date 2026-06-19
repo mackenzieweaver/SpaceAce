@@ -1,16 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5s5dito4uyp1"]
+[gd_scene format=3 uid="uid://b5s5dito4uyp1"]
 
 [ext_resource type="Script" uid="uid://c75pqvu7fdwin" path="res://Scenes/Spawner/Spawner.gd" id="1_sop60"]
 
-[node name="Spawner" type="Node3D"]
+[node name="Spawner" type="Node3D" unique_id=2066332802]
 script = ExtResource("1_sop60")
 
-[node name="TieTimer" type="Timer" parent="."]
+[node name="TieTimer" type="Timer" parent="." unique_id=833849477]
 wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="AsteroidTimer" type="Timer" parent="."]
+[node name="AsteroidTimer" type="Timer" parent="." unique_id=1456155819]
 wait_time = 5.0
 one_shot = true
 autostart = true

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hlwcgwybqjkr" path="res://Scenes/PlayerCam/PlayerCam.tscn" id="7_p7pgw"]
 [ext_resource type="PackedScene" uid="uid://b5s5dito4uyp1" path="res://Scenes/Spawner/Spawner.tscn" id="8_kjd5s"]
 [ext_resource type="PackedScene" uid="uid://bdhgggt75cro3" path="res://Scenes/VFX/ShadedWall.tscn" id="8_p7pgw"]
+[ext_resource type="PackedScene" uid="uid://b52dn3t6kfx87" path="res://Scenes/Laser/PlayerLaser.tscn" id="9_kuxid"]
 [ext_resource type="PackedScene" uid="uid://2gv3qb8l4xt0" path="res://Scenes/GameUi/GameUi.tscn" id="11_0d0er"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j0p05"]
@@ -38,6 +39,9 @@ plane = Plane(1, 0, 0, 0)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ng1ea"]
 plane = Plane(-1, 0, 0, 0)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0d0er"]
+plane = Plane(0, 0, 1, 0)
+
 [node name="World" type="Node" unique_id=1467749879]
 script = ExtResource("1_87yka")
 
@@ -66,6 +70,10 @@ autostart = true
 
 [node name="Player" parent="." unique_id=525250477 instance=ExtResource("7_87yka")]
 fly_speed = 20.0
+
+[node name="PlayerLaser" parent="Player" unique_id=2018984345 instance=ExtResource("9_kuxid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.112936)
+speed = 10.0
 
 [node name="Walls" type="Node3D" parent="." unique_id=1331782833]
 
@@ -100,5 +108,13 @@ shape = SubResource("WorldBoundaryShape3D_kuxid")
 [node name="CollisionShapeRight" type="CollisionShape3D" parent="Walls/WallCollider" unique_id=1118950253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ng1ea")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=103203279]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=471365838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+shape = SubResource("WorldBoundaryShape3D_0d0er")
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]

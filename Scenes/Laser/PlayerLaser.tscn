@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b52dn3t6kfx87"]
+
+[ext_resource type="PackedScene" uid="uid://cjgs51mk038ab" path="res://Scenes/Laser/Laser.tscn" id="1_s1xwe"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s1xwe"]
+radius = 0.16
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oucon"]
+shading_mode = 0
+albedo_color = Color(0.70185107, 1.1327688, 2.454, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jpe6d"]
+material = SubResource("StandardMaterial3D_oucon")
+radius = 0.12
+height = 1.5
+
+[node name="PlayerLaser" unique_id=2018984345 instance=ExtResource("1_s1xwe")]
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape3D" parent="." index="1" unique_id=466616501]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_s1xwe")
+
+[node name="Mesh" type="MeshInstance3D" parent="." index="3" unique_id=464068114]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_jpe6d")
