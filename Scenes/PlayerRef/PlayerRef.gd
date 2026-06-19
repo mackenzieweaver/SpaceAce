@@ -2,19 +2,17 @@ extends Node
 class_name LinkPlayer
 
 var player: Player
-var player_pos: Vector3
-var player_x: float
-var player_y: float
-var player_z: float
+var player_pos: Vector3:
+	get: return player.global_position if player else Vector3.ZERO
+var player_x: float:
+	get: return player_pos.x
+var player_y: float:
+	get: return player_pos.y
+var player_z: float:
+	get: return player_pos.z
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group(Player.GROUP_PLAYER)
-
-func _physics_process(_delta: float) -> void:
-	player_pos = player.global_position
-	player_x = player_pos.x
-	player_y = player_pos.y
-	player_z = player_pos.z
 
 func player_pos_set_y(y: float) -> Vector3:
 	return Vector3(player_x, y, player_z)
