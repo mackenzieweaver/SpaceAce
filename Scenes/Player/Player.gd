@@ -18,9 +18,9 @@ const GROUP_PLAYER: String = "player"
 @export var max_roll_angle: float = 30.0
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
 	# Shoot
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot", true):
 		gun.shoot()
 
 

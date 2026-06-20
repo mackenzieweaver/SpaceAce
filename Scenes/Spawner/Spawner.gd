@@ -4,9 +4,11 @@ extends Node3D
 class_name Spawner
 
 const IMPACT_FLASH = preload("res://Scenes/VFX/ImpactFlash/ImpactFlash.tscn")
+const PLAYER_LASER = preload("res://Scenes/Laser/PlayerLaser.tscn")
 
 
 enum SceneNames { ImpactFlash }
+enum LaserTypes { PlayerLaser }
 const SCENES: Dictionary[int, PackedScene] = {
 	SceneNames.ImpactFlash: IMPACT_FLASH,
 }
@@ -21,13 +23,24 @@ const SCENES: Dictionary[int, PackedScene] = {
 @onready var asteroid_timer: Timer = $AsteroidTimer
 
 
+var _player_laser_pool: LaserPool
+
+
 func on_spawn(pos: Vector3, scn: SceneNames):
 	var scene = SCENES[scn].instantiate()
 	call_deferred("add_with_position", scene, pos)
 
 
+func on_laser(p_tr: Transform3D, laser_type: Spawner.LaserTypes) -> void:
+	match laser_type:
+		LaserTypes.PlayerLaser:
+			_player_laser_pool.activate_new_scene(p_tr)
+
+
 func _ready() -> void:
 	SignalHub.spawn.connect(on_spawn)
+	SignalHub.laser.connect(on_laser)
+	_player_laser_pool = LaserPool.new(10, PLAYER_LASER, self, "PlayerLaser")
 
 
 func add_with_transform(ob: Node3D, p_tr: Transform3D) -> void:

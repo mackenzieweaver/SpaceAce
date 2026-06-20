@@ -39,8 +39,8 @@ plane = Plane(1, 0, 0, 0)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ng1ea"]
 plane = Plane(-1, 0, 0, 0)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0d0er"]
-plane = Plane(0, 0, 1, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_kuxid"]
+size = Vector3(10, 10, 1)
 
 [node name="World" type="Node" unique_id=1467749879]
 script = ExtResource("1_87yka")
@@ -71,7 +71,7 @@ autostart = true
 [node name="Player" parent="." unique_id=525250477 instance=ExtResource("7_87yka")]
 fly_speed = 20.0
 
-[node name="PlayerLaser" parent="Player" unique_id=2018984345 instance=ExtResource("9_kuxid")]
+[node name="PlayerLaser" parent="." unique_id=2018984345 instance=ExtResource("9_kuxid")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.112936)
 speed = 10.0
 
@@ -109,12 +109,12 @@ shape = SubResource("WorldBoundaryShape3D_kuxid")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ng1ea")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=103203279]
+[node name="TestWall" type="StaticBody3D" parent="." unique_id=103203279]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=471365838]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
-shape = SubResource("WorldBoundaryShape3D_0d0er")
+[node name="CollisionShape" type="CollisionShape3D" parent="TestWall" unique_id=471365838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.648295, 0, -40)
+shape = SubResource("BoxShape3D_kuxid")
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]

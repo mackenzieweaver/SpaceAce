@@ -9,6 +9,7 @@ collision_mask = 0
 script = ExtResource("1_g6hyc")
 
 [node name="LifeTimer" parent="." unique_id=1288814663 instance=ExtResource("1_nhk4o")]
+auto_remove = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=466616501]
 
@@ -16,3 +17,4 @@ script = ExtResource("1_g6hyc")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="time_out" from="LifeTimer" to="." method="_on_life_timer_time_out"]

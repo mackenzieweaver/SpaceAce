@@ -5,6 +5,7 @@ class_name Gun
 @export var debounce: float = 0.18
 @export var sound_effect: AudioStream
 @export var muzzles: Array[Node3D]
+@export var laser_type := Spawner.LaserTypes.PlayerLaser
 
 
 const GUN_FLASH = preload("res://Scenes/VFX/GunFlash/GunFlash.tscn")
@@ -18,6 +19,8 @@ var _timer: float = 0.0
 func shoot():
 	if _timer > debounce:
 		effect.play()
+		for m in muzzles:
+			SignalHub.laser.emit(m.global_transform, laser_type)
 		for gf in _gun_flashes:
 			gf.emitting = true
 		_timer = 0.0
