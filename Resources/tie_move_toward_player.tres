@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TurnShoot" format=3 uid="uid://2emgl11dep57"]
+
+[ext_resource type="Script" uid="uid://dfycmftqadwyv" path="res://Scenes/TieFighter/Behaviors/TurnShoot.gd" id="1_34jra"]
+
+[resource]
+script = ExtResource("1_34jra")
+metadata/_custom_type_script = "uid://dfycmftqadwyv"

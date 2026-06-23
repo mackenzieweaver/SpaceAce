@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bdhgggt75cro3" path="res://Scenes/VFX/ShadedWall.tscn" id="8_p7pgw"]
 [ext_resource type="PackedScene" uid="uid://b52dn3t6kfx87" path="res://Scenes/Laser/PlayerLaser.tscn" id="9_kuxid"]
 [ext_resource type="PackedScene" uid="uid://2gv3qb8l4xt0" path="res://Scenes/GameUi/GameUi.tscn" id="11_0d0er"]
+[ext_resource type="PackedScene" uid="uid://5xs25ndlun0t" path="res://Scenes/TieFighter/TieFighter.tscn" id="11_ng1ea"]
+[ext_resource type="Resource" uid="uid://ciswa58p8hnuk" path="res://Resources/tie_move_forward.tres" id="12_x5sp8"]
+[ext_resource type="Resource" uid="uid://2emgl11dep57" path="res://Resources/tie_move_toward_player.tres" id="13_lp0bp"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j0p05"]
 panorama = ExtResource("1_xf6vi")
@@ -73,6 +76,7 @@ fly_speed = 20.0
 
 [node name="PlayerLaser" parent="." unique_id=2018984345 instance=ExtResource("9_kuxid")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.112936)
+visible = false
 speed = 10.0
 
 [node name="Walls" type="Node3D" parent="." unique_id=1331782833]
@@ -116,5 +120,13 @@ collision_mask = 0
 [node name="CollisionShape" type="CollisionShape3D" parent="TestWall" unique_id=471365838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.648295, 0, -40)
 shape = SubResource("BoxShape3D_kuxid")
+
+[node name="TieFighter" parent="." unique_id=1995720730 instance=ExtResource("11_ng1ea")]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -24.358963, 0, -100)
+enemy_behavior = ExtResource("12_x5sp8")
+
+[node name="TieFighter2" parent="." unique_id=154018511 instance=ExtResource("11_ng1ea")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55.657524, 0, -100)
+enemy_behavior = ExtResource("13_lp0bp")
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
