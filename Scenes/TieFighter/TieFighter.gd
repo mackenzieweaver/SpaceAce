@@ -3,6 +3,7 @@ class_name TieFighter extends Node3D
 @export var stay_still: bool = false
 @export var enemy_behavior: EnemyBehavior
 
+@onready var mesh: MeshInstance3D = $Pivot/TieFighter
 @onready var engine: AudioStreamPlayer3D = $Engine
 @onready var blast: AudioStreamPlayer3D = $Blast
 @onready var player_ref: LinkPlayer = $PlayerRef

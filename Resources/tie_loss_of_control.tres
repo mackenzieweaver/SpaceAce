@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LossOfControl" format=3 uid="uid://cf7bnxjhw03ln"]
+
+[ext_resource type="Script" uid="uid://bqxk5b6ikr28d" path="res://Scenes/TieFighter/Behaviors/LossOfControl.gd" id="1_5f1rt"]
+
+[resource]
+script = ExtResource("1_5f1rt")
+loss_control_distance = 30.0
+loss_control_speed = 15.0
+metadata/_custom_type_script = "uid://bqxk5b6ikr28d"
