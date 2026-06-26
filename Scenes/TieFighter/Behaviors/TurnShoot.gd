@@ -14,6 +14,7 @@ func update(delta: float) -> void:
 		)
 		if _within_distance:
 			face_player()
+			shoot_burst()
 			_engaged = true
 
 

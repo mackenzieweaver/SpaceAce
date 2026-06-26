@@ -7,6 +7,7 @@ class_name TieFighter extends Node3D
 @onready var engine: AudioStreamPlayer3D = $Engine
 @onready var blast: AudioStreamPlayer3D = $Blast
 @onready var player_ref: LinkPlayer = $PlayerRef
+@onready var gun: Gun = $Pivot/Gun
 
 func _ready() -> void:
 	if enemy_behavior:

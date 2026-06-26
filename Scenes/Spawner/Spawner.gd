@@ -5,6 +5,7 @@ class_name Spawner
 
 const IMPACT_FLASH = preload("res://Scenes/VFX/ImpactFlash/ImpactFlash.tscn")
 const PLAYER_LASER = preload("res://Scenes/Laser/PlayerLaser.tscn")
+const TIE_LASER = preload("res://Scenes/Laser/TieLaser.tscn")
 
 
 enum SceneNames {
@@ -31,6 +32,7 @@ const SCENES: Dictionary[int, PackedScene] = {
 
 
 var _player_laser_pool: LaserPool
+var _tie_laser_pool: LaserPool
 
 
 func on_spawn(pos: Vector3, scn: SceneNames):
@@ -40,14 +42,15 @@ func on_spawn(pos: Vector3, scn: SceneNames):
 
 func on_laser(p_tr: Transform3D, laser_type: Spawner.LaserTypes) -> void:
 	match laser_type:
-		LaserTypes.PlayerLaser:
-			_player_laser_pool.activate_new_scene(p_tr)
+		LaserTypes.PlayerLaser: _player_laser_pool.activate_new_scene(p_tr)
+		LaserTypes.TieLaser: _tie_laser_pool.activate_new_scene(p_tr)
 
 
 func _ready() -> void:
 	SignalHub.spawn.connect(on_spawn)
 	SignalHub.laser.connect(on_laser)
-	_player_laser_pool = LaserPool.new(10, PLAYER_LASER, self, "PlayerLaser")
+	_player_laser_pool = LaserPool.new(20, PLAYER_LASER, self, "PlayerLaser")
+	_tie_laser_pool = LaserPool.new(40, TIE_LASER, self, "TieLaser")
 
 
 func add_with_transform(ob: Node3D, p_tr: Transform3D) -> void:
