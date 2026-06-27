@@ -129,11 +129,16 @@ enemy_behavior = ExtResource("12_x5sp8")
 
 [node name="TieFighter2" parent="." unique_id=154018511 instance=ExtResource("11_ng1ea")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 55.657524, 0, -100)
+visible = false
 enemy_behavior = ExtResource("13_lp0bp")
 
 [node name="TieFighter3" parent="." unique_id=386431427 instance=ExtResource("11_ng1ea")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -19.779352, 0, -33.014687)
 visible = false
 enemy_behavior = ExtResource("14_lp0bp")
+
+[node name="TieFighter4" parent="." unique_id=1062501759 instance=ExtResource("11_ng1ea")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.05252266, 0, -8.372841)
+stay_still = true
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]

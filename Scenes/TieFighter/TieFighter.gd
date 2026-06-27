@@ -17,3 +17,6 @@ func _physics_process(delta: float) -> void:
 	# Behavior defined by resource
 	if enemy_behavior:
 		enemy_behavior.update(delta)
+
+func _on_hit_box_died() -> void:
+	queue_free()

@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://2hlcjcamn8v4" path="res://Assets/Audio/Effects/703913_flyby.wav" id="10_kbofb"]
 [ext_resource type="AudioStream" uid="uid://byn8gkcnre2bp" path="res://Assets/Audio/Effects/658839_TieBlast.wav" id="11_72i2r"]
 [ext_resource type="PackedScene" uid="uid://dbx4srq242e5i" path="res://Scenes/PlayerRef/PlayerRef.tscn" id="12_8whw0"]
+[ext_resource type="PackedScene" uid="uid://cx65lbgi8ha1" path="res://Scenes/HitBox/HitBox.tscn" id="15_8whw0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_815ps"]
 resource_name = "Material.001"
@@ -825,6 +826,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2iogh")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5fve1"]
+size = Vector3(6, 6, 6)
+
 [node name="TieFighter" type="Node3D" unique_id=1995720730]
 script = ExtResource("1_72i2r")
 
@@ -934,3 +938,9 @@ stream = ExtResource("11_72i2r")
 
 [node name="LifeTimer" parent="." unique_id=2066542289 instance=ExtResource("9_nibfq")]
 life_time = 20.0
+
+[node name="HitBox" parent="." unique_id=1825443406 instance=ExtResource("15_8whw0")]
+collision_layer = 2
+shape_resource = SubResource("BoxShape3D_5fve1")
+
+[connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
