@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://byn8gkcnre2bp" path="res://Assets/Audio/Effects/658839_TieBlast.wav" id="11_72i2r"]
 [ext_resource type="PackedScene" uid="uid://dbx4srq242e5i" path="res://Scenes/PlayerRef/PlayerRef.tscn" id="12_8whw0"]
 [ext_resource type="PackedScene" uid="uid://cx65lbgi8ha1" path="res://Scenes/HitBox/HitBox.tscn" id="15_8whw0"]
+[ext_resource type="PackedScene" uid="uid://dytuqlcb3wy1n" path="res://Scenes/VFX/TieExplosionEffect.tscn" id="16_5fve1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_815ps"]
 resource_name = "Material.001"
@@ -942,5 +943,6 @@ life_time = 20.0
 [node name="HitBox" parent="." unique_id=1825443406 instance=ExtResource("15_8whw0")]
 collision_layer = 2
 shape_resource = SubResource("BoxShape3D_5fve1")
+explosion_effect = ExtResource("16_5fve1")
 
 [connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]

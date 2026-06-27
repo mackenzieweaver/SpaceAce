@@ -9,7 +9,7 @@ const TIE_LASER = preload("res://Scenes/Laser/TieLaser.tscn")
 
 
 enum SceneNames {
-	ImpactFlash
+	ImpactFlash,
 }
 
 enum LaserTypes {
