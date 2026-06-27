@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://ciswa58p8hnuk" path="res://Resources/tie_move_forward.tres" id="12_x5sp8"]
 [ext_resource type="Resource" uid="uid://2emgl11dep57" path="res://Resources/tie_move_toward_player.tres" id="13_lp0bp"]
 [ext_resource type="Resource" uid="uid://cf7bnxjhw03ln" path="res://Resources/tie_loss_of_control.tres" id="14_lp0bp"]
+[ext_resource type="PackedScene" uid="uid://b0advvl7r8aql" path="res://Scenes/EnemyExplode/TieExplode.tscn" id="15_0phyg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j0p05"]
 panorama = ExtResource("1_xf6vi")
@@ -139,6 +140,10 @@ enemy_behavior = ExtResource("14_lp0bp")
 
 [node name="TieFighter4" parent="." unique_id=1062501759 instance=ExtResource("11_ng1ea")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.05252266, 0, -8.372841)
+visible = false
 stay_still = true
+
+[node name="TieExplode" parent="." unique_id=1236074812 instance=ExtResource("15_0phyg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.17940712, 0, -7.4197893)
 
 [connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
