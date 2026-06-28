@@ -6,6 +6,7 @@ signal died
 @export var shape_resource: Shape3D
 @export var start_health: int = 100
 @export var explosion_effect: PackedScene
+@export var explosion_scene: PackedScene
 
 var _dead: bool = false
 var _current_health: int
@@ -27,9 +28,12 @@ func die():
 	SpaceUtils.toggle_area3d(self, false)
 
 func blow_up():
-	var child = explosion_effect.instantiate() as TieExplosionEffect
-	add_child(child)
-	child.finished.connect(die)
+	var particles = explosion_effect.instantiate() as TieExplosionEffect
+	var tie_parts = explosion_scene.instantiate() as EnemyExplode
+	
+	add_child(particles)
+	add_child(tie_parts)
+
 
 func take_damage(v: int):
 	if _dead: return
@@ -38,6 +42,7 @@ func take_damage(v: int):
 	
 	if _current_health <= 0:
 		blow_up()
+		die()
 
 
 func _on_area_entered(area: Area3D) -> void:

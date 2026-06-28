@@ -19,4 +19,6 @@ func _physics_process(delta: float) -> void:
 		enemy_behavior.update(delta)
 
 func _on_hit_box_died() -> void:
+	mesh.hide()
+	await get_tree().create_timer(5).timeout
 	queue_free()
