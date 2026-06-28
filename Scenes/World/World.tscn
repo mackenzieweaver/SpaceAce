@@ -103,9 +103,9 @@ shape = SubResource("WorldBoundaryShape3D_kuxid")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ng1ea")
 
-[node name="Asteroid" parent="." unique_id=1460254889 instance=ExtResource("10_kuxid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.87604)
+[node name="TieFighter" parent="." unique_id=1995720730 instance=ExtResource("11_ng1ea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.345835)
 visible = false
 
-[node name="TieFighter" parent="." unique_id=1995720730 instance=ExtResource("11_ng1ea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.127871)
+[node name="Asteroid" parent="." unique_id=1460254889 instance=ExtResource("10_kuxid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.06464)

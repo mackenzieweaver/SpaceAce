@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://iws2vud6j45k" path="res://Scenes/LifeTimer/LifeTimer.tscn" id="1_i4hjy"]
 [ext_resource type="Script" uid="uid://jkv3w3phm3gi" path="res://Scenes/Asteroid/Asteroid.gd" id="1_ixrp8"]
 [ext_resource type="PackedScene" uid="uid://cx65lbgi8ha1" path="res://Scenes/HitBox/HitBox.tscn" id="2_ixrp8"]
+[ext_resource type="Material" uid="uid://dwqrjthm136aw" path="res://Resources/asteroid_material_3d.tres" id="3_60yow"]
+[ext_resource type="PackedScene" uid="uid://iak1p4nu2m81" path="res://Scenes/EnemyExplode/AsteroidExplode.tscn" id="5_bkogq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_deuw0"]
 
@@ -45,10 +47,12 @@ script = ExtResource("1_ixrp8")
 [node name="LifeTimer" parent="." unique_id=2066542289 instance=ExtResource("1_i4hjy")]
 
 [node name="Icosphere" type="MeshInstance3D" parent="." unique_id=437419231]
+material_override = ExtResource("3_60yow")
 mesh = SubResource("ArrayMesh_xj728")
 
 [node name="HitBox" parent="." unique_id=1825443406 instance=ExtResource("2_ixrp8")]
 collision_layer = 2
 shape_resource = SubResource("ConvexPolygonShape3D_60yow")
+explosion_effect = ExtResource("5_bkogq")
 
 [connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
