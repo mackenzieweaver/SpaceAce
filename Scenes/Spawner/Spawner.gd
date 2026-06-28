@@ -3,22 +3,13 @@ extends Node3D
 
 class_name Spawner
 
-const IMPACT_FLASH = preload("res://Scenes/VFX/ImpactFlash/ImpactFlash.tscn")
 const PLAYER_LASER = preload("res://Scenes/Laser/PlayerLaser.tscn")
 const TIE_LASER = preload("res://Scenes/Laser/TieLaser.tscn")
 
 
-enum SceneNames {
-	ImpactFlash,
-}
-
 enum LaserTypes {
 	PlayerLaser,
 	TieLaser
-}
-
-const SCENES: Dictionary[int, PackedScene] = {
-	SceneNames.ImpactFlash: IMPACT_FLASH,
 }
 
 
@@ -35,8 +26,8 @@ var _player_laser_pool: LaserPool
 var _tie_laser_pool: LaserPool
 
 
-func on_spawn(pos: Vector3, scn: SceneNames):
-	var scene = SCENES[scn].instantiate()
+func on_spawn(pos: Vector3, scn: PackedScene):
+	var scene = scn.instantiate()
 	call_deferred("add_with_position", scene, pos)
 
 

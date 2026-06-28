@@ -1,7 +1,7 @@
 extends Node
 
 
-signal spawn(pos: Vector3, scn: Spawner.SceneNames)
+signal spawn(pos: Vector3, scn: PackedScene)
 func emit_spawn(): spawn.emit()
 
 

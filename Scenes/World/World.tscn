@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hlwcgwybqjkr" path="res://Scenes/PlayerCam/PlayerCam.tscn" id="7_p7pgw"]
 [ext_resource type="PackedScene" uid="uid://b5s5dito4uyp1" path="res://Scenes/Spawner/Spawner.tscn" id="8_kjd5s"]
 [ext_resource type="PackedScene" uid="uid://bdhgggt75cro3" path="res://Scenes/VFX/ShadedWall.tscn" id="8_p7pgw"]
-[ext_resource type="PackedScene" uid="uid://b52dn3t6kfx87" path="res://Scenes/Laser/PlayerLaser.tscn" id="9_kuxid"]
+[ext_resource type="PackedScene" uid="uid://ipwqx3tsxg6h" path="res://Scenes/Asteroid/Asteroid.tscn" id="10_kuxid"]
 [ext_resource type="PackedScene" uid="uid://2gv3qb8l4xt0" path="res://Scenes/GameUi/GameUi.tscn" id="11_0d0er"]
 [ext_resource type="PackedScene" uid="uid://5xs25ndlun0t" path="res://Scenes/TieFighter/TieFighter.tscn" id="11_ng1ea"]
 
@@ -40,9 +40,6 @@ plane = Plane(1, 0, 0, 0)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ng1ea"]
 plane = Plane(-1, 0, 0, 0)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kuxid"]
-size = Vector3(10, 10, 1)
-
 [node name="World" type="Node" unique_id=1467749879]
 script = ExtResource("1_87yka")
 
@@ -59,25 +56,20 @@ autoplay = true
 
 [node name="Spawner" parent="." unique_id=5313595 instance=ExtResource("8_kjd5s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+x_range = null
+y_range = null
+enabled = null
 
 [node name="GameUi" parent="." unique_id=1432318787 instance=ExtResource("11_0d0er")]
 
 [node name="PlayerCam" parent="." unique_id=1660530946 instance=ExtResource("7_p7pgw")]
 transform = Transform3D(1, 0, 0, 0, 0.9998038, 0.019808248, 0, -0.019808248, 0.9998038, 0, 2.3953073, 9.353167)
 
-[node name="TestTimer" type="Timer" parent="." unique_id=1807130347]
-wait_time = 3.0
-autostart = true
-
 [node name="Player" parent="." unique_id=525250477 instance=ExtResource("7_87yka")]
 fly_speed = 20.0
 
-[node name="PlayerLaser" parent="." unique_id=2018984345 instance=ExtResource("9_kuxid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.112936)
-visible = false
-speed = 10.0
-
 [node name="Walls" type="Node3D" parent="." unique_id=1331782833]
+visible = false
 
 [node name="ShadedWallTop" parent="Walls" unique_id=836710790 instance=ExtResource("8_p7pgw")]
 transform = Transform3D(-2.1855695e-07, -5, -2.1855695e-07, 0, -2.1855695e-07, 5, -5, 2.1855695e-07, 9.553427e-15, 0, 40, 0)
@@ -111,16 +103,9 @@ shape = SubResource("WorldBoundaryShape3D_kuxid")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ng1ea")
 
-[node name="TestWall" type="StaticBody3D" parent="." unique_id=103203279]
-collision_layer = 2
-collision_mask = 0
+[node name="Asteroid" parent="." unique_id=1460254889 instance=ExtResource("10_kuxid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.87604)
+visible = false
 
-[node name="CollisionShape" type="CollisionShape3D" parent="TestWall" unique_id=471365838]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.648295, 0, -40)
-shape = SubResource("BoxShape3D_kuxid")
-
-[node name="TieFighter" parent="." unique_id=1062501759 instance=ExtResource("11_ng1ea")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.05252266, 0, -8.372841)
-stay_still = true
-
-[connection signal="timeout" from="TestTimer" to="." method="_on_test_timer_timeout"]
+[node name="TieFighter" parent="." unique_id=1995720730 instance=ExtResource("11_ng1ea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.127871)

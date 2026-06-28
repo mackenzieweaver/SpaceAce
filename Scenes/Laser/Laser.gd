@@ -3,6 +3,7 @@ class_name Laser
 
 const OFF_SCREEN := Vector3(0, 0, 200)
 
+const IMPACT_FLASH = preload("res://Scenes/VFX/ImpactFlash/ImpactFlash.tscn")
 
 @onready var impact_point: Marker3D = $ImpactPoint
 @onready var life_timer: LifeTimer = $LifeTimer
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 
 func blow_up() -> void:
-	SignalHub.spawn.emit(global_position, Spawner.SceneNames.ImpactFlash)
+	SignalHub.spawn.emit(global_position, IMPACT_FLASH)
 	stop()
 
 

@@ -1,7 +1,9 @@
 class_name TieFighter extends Node3D
 
+
 @export var stay_still: bool = false
 @export var enemy_behavior: EnemyBehavior
+
 
 @onready var mesh: MeshInstance3D = $Pivot/TieFighter
 @onready var engine: AudioStreamPlayer3D = $Engine
@@ -9,16 +11,17 @@ class_name TieFighter extends Node3D
 @onready var player_ref: LinkPlayer = $PlayerRef
 @onready var gun: Gun = $Pivot/Gun
 
+
 func _ready() -> void:
 	if enemy_behavior:
 		enemy_behavior.setup(self)
+
 
 func _physics_process(delta: float) -> void:
 	# Behavior defined by resource
 	if enemy_behavior:
 		enemy_behavior.update(delta)
 
+
 func _on_hit_box_died() -> void:
-	mesh.hide()
-	await get_tree().create_timer(5).timeout
 	queue_free()
