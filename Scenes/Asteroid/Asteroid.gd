@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	else:
 		mesh.rotate(Vector3(1, 1, 0).normalized(), spin_speed * delta)
-		#translate_object_local(Vector3.FORWARD * speed * delta)
+		translate_object_local(Vector3.FORWARD * speed * delta)
 
 
 func _on_hit_box_died() -> void:

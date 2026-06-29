@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hlwcgwybqjkr" path="res://Scenes/PlayerCam/PlayerCam.tscn" id="7_p7pgw"]
 [ext_resource type="PackedScene" uid="uid://b5s5dito4uyp1" path="res://Scenes/Spawner/Spawner.tscn" id="8_kjd5s"]
 [ext_resource type="PackedScene" uid="uid://bdhgggt75cro3" path="res://Scenes/VFX/ShadedWall.tscn" id="8_p7pgw"]
-[ext_resource type="PackedScene" uid="uid://ipwqx3tsxg6h" path="res://Scenes/Asteroid/Asteroid.tscn" id="10_kuxid"]
 [ext_resource type="PackedScene" uid="uid://2gv3qb8l4xt0" path="res://Scenes/GameUi/GameUi.tscn" id="11_0d0er"]
-[ext_resource type="PackedScene" uid="uid://5xs25ndlun0t" path="res://Scenes/TieFighter/TieFighter.tscn" id="11_ng1ea"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j0p05"]
 panorama = ExtResource("1_xf6vi")
@@ -56,9 +54,6 @@ autoplay = true
 
 [node name="Spawner" parent="." unique_id=5313595 instance=ExtResource("8_kjd5s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
-x_range = null
-y_range = null
-enabled = null
 
 [node name="GameUi" parent="." unique_id=1432318787 instance=ExtResource("11_0d0er")]
 
@@ -102,10 +97,3 @@ shape = SubResource("WorldBoundaryShape3D_kuxid")
 [node name="CollisionShapeRight" type="CollisionShape3D" parent="Walls/WallCollider" unique_id=1118950253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ng1ea")
-
-[node name="TieFighter" parent="." unique_id=1995720730 instance=ExtResource("11_ng1ea")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.345835)
-visible = false
-
-[node name="Asteroid" parent="." unique_id=1460254889 instance=ExtResource("10_kuxid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.06464)

@@ -1,0 +1,57 @@
+[gd_resource type="VisualShader" format=3 uid="uid://c80xinxmmwcd7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vqyin"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3hddo"]
+noise = SubResource("FastNoiseLite_vqyin")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_f2lew"]
+expanded_output_ports = [0]
+texture = SubResource("NoiseTexture2D_3hddo")
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_48cca"]
+output_port_for_preview = 0
+default_input_values = [0, 0.5, 1, 0.0]
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_xbr8t"]
+default_input_values = [1, 0.5, 2, 1.0, 3, 0.0, 4, 1.0]
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_vqyin"]
+varying_name = "lifetime"
+
+[sub_resource type="VisualShaderNodeRandomRange" id="VisualShaderNodeRandomRange_3hddo"]
+default_input_values = [0, Vector3(1, 1, 1), 1, 0.5, 2, 0.8]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_f2lew"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_48cca"]
+varying_name = "lifetime"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_uolmd"]
+expanded_output_ports = [0]
+input_name = "instance_custom"
+
+[resource]
+flags/depth_prepass_alpha = true
+flags/shadows_disabled = true
+varyings/lifetime = "0,0"
+nodes/vertex/2/node = SubResource("VisualShaderNodeVaryingSetter_48cca")
+nodes/vertex/2/position = Vector2(20, 120)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_uolmd")
+nodes/vertex/3/position = Vector2(-360, 100)
+nodes/vertex/connections = PackedInt32Array(3, 2, 2, 0)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_f2lew")
+nodes/fragment/2/position = Vector2(-260, 500)
+nodes/fragment/3/node = SubResource("VisualShaderNodeStep_48cca")
+nodes/fragment/3/position = Vector2(100, 340)
+nodes/fragment/5/node = SubResource("VisualShaderNodeRemap_xbr8t")
+nodes/fragment/5/position = Vector2(-260, 200)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVaryingGetter_vqyin")
+nodes/fragment/6/position = Vector2(-520, 220)
+nodes/fragment/7/node = SubResource("VisualShaderNodeRandomRange_3hddo")
+nodes/fragment/7/position = Vector2(-580, 340)
+nodes/fragment/8/node = SubResource("VisualShaderNodeInput_f2lew")
+nodes/fragment/8/position = Vector2(-40, -20)
+nodes/fragment/connections = PackedInt32Array(2, 1, 3, 1, 3, 0, 0, 1, 5, 0, 3, 0, 6, 0, 5, 0, 7, 0, 5, 1, 8, 0, 0, 0)

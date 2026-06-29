@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dt7e6tydmi3th"]
+
+[ext_resource type="Shader" uid="uid://c80xinxmmwcd7" path="res://Resources/asteroid_disolve_shader.tres" id="1_faa4s"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_faa4s")

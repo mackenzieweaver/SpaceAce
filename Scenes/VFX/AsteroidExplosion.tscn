@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://cd2bge3rqk5j6"]
 
 [ext_resource type="Shader" uid="uid://dciwh3k70r5fo" path="res://Scenes/VFX/RingShader.tres" id="1_5usua"]
+[ext_resource type="Script" uid="uid://cf3yi4daof7dd" path="res://Scenes/VFX/AsteroidExplosion.gd" id="1_mwtcw"]
 [ext_resource type="ArrayMesh" uid="uid://c1gch0n0kcprx" path="res://Resources/RingMesh.tres" id="2_pi6mi"]
+[ext_resource type="Material" uid="uid://dt7e6tydmi3th" path="res://Resources/new_shader_material.tres" id="3_3rftp"]
 [ext_resource type="Texture2D" uid="uid://dxc6crvxbuenh" path="res://Assets/Particles/Dot.png" id="3_pi6mi"]
+[ext_resource type="ArrayMesh" uid="uid://bxblyqx3qk1r0" path="res://Resources/CloudMesh.tres" id="4_5rh6i"]
+[ext_resource type="AudioStream" uid="uid://dgk82rdmkdtdb" path="res://Assets/Audio/Effects/93834__cgeffex__huge-explosion.wav" id="7_o63wm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wrwbq"]
 render_priority = 0
@@ -17,8 +21,49 @@ curve = SubResource("Curve_3rftp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mwtcw"]
 gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
 color = Color(1.6807706, 1.3791358, 0, 1)
 alpha_curve = SubResource("CurveTexture_5rh6i")
+
+[sub_resource type="Curve" id="Curve_mwtcw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o63wm"]
+curve = SubResource("Curve_mwtcw")
+
+[sub_resource type="Gradient" id="Gradient_u17sk"]
+offsets = PackedFloat32Array(0, 0.62454873, 0.8700361)
+colors = PackedColorArray(1, 1, 1, 1, 0.2166065, 0.2166065, 0.2166065, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g3asj"]
+gradient = SubResource("Gradient_u17sk")
+
+[sub_resource type="Curve" id="Curve_jwye8"]
+_data = [Vector2(0, 0.24398398), 0.0, 0.0, 0, 0, Vector2(0.11881188, 0.47860968), 0.0, 0.0, 0, 0, Vector2(0.20792079, 0.53943855), 0.0, 0.0, 0, 0, Vector2(0.27062708, 0.99131024), 0.0, 0.0, 0, 0, Vector2(0.9207921, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_fdnyf"]
+curve = SubResource("Curve_jwye8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_81q10"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.59999776
+radial_accel_max = 1.1999978
+tangential_accel_min = 0.99999774
+tangential_accel_max = 1.4999977
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_fdnyf")
+color = Color(1.5966519, 0.70950866, 0, 1)
+color_ramp = SubResource("GradientTexture1D_g3asj")
+alpha_curve = SubResource("CurveTexture_o63wm")
 
 [sub_resource type="Gradient" id="Gradient_wrwbq"]
 colors = PackedColorArray(1, 0.68781006, 0, 1, 0.8927504, 1.1105356, 0, 1)
@@ -74,7 +119,113 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_jwye8")
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_u17sk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stars:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g3asj"]
+resource_name = "explode"
+length = 4.0
+step = 0.1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.124261916,
+"start_offset": 0.0,
+"stream": ExtResource("7_o63wm")
+}],
+"times": PackedFloat32Array(-0.033333335, 0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ring:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fire:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stars:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwye8"]
+_data = {
+&"RESET": SubResource("Animation_u17sk"),
+&"explode": SubResource("Animation_g3asj")
+}
+
 [node name="AsteroidExplosion" type="Node3D" unique_id=19657234]
+script = ExtResource("1_mwtcw")
 
 [node name="Ring" type="GPUParticles3D" parent="." unique_id=706724122]
 material_override = SubResource("ShaderMaterial_wrwbq")
@@ -86,6 +237,15 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mwtcw")
 draw_pass_1 = ExtResource("2_pi6mi")
 
+[node name="Fire" type="GPUParticles3D" parent="." unique_id=2025432425]
+material_override = ExtResource("3_3rftp")
+amount = 24
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource("ParticleProcessMaterial_81q10")
+draw_pass_1 = ExtResource("4_5rh6i")
+
 [node name="Stars" type="GPUParticles3D" parent="." unique_id=1794545403]
 emitting = false
 amount = 128
@@ -94,3 +254,11 @@ one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_g3asj")
 draw_pass_1 = SubResource("QuadMesh_fdnyf")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="." unique_id=1413860945]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=886792853]
+libraries/ = SubResource("AnimationLibrary_jwye8")
+autoplay = &"explode"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
