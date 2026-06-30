@@ -1,4 +1,5 @@
-class_name EnemyBehavior extends Resource
+class_name EnemyBehavior
+extends Resource
 
 
 @export var engine_sound_distance: float = 100.0
@@ -16,6 +17,7 @@ var owner: TieFighter:
 func setup(p_owner: TieFighter) -> void:
 	owner = p_owner
 	_player_ref = owner.player_ref
+	face_player()
 
 
 func update(delta: float) -> void:

@@ -1,4 +1,5 @@
-class_name LossOfControl extends EnemyBehavior
+class_name LossOfControl
+extends EnemyBehavior
 
 const BROKEN_TIE_SOUND = preload("res://Assets/Audio/Effects/384472__broken_tie.wav")
 
@@ -13,12 +14,12 @@ func setup(p_owner: TieFighter) -> void:
 func update(delta: float) -> void:
 	super(delta)
 	
-	var spin: bool = _player_ref.player_less_than_distance(
+	var should_spin: bool = _player_ref.player_less_than_distance(
 		owner.global_position,
 		loss_control_distance
 	)
 	
-	if spin:
+	if should_spin:
 		# Slow down
 		speed = loss_control_speed
 		# Rotate x and y

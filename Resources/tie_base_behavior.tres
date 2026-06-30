@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://c3a4cvjb7c0uc" path="res://Scenes/TieFighter/Behaviors/EnemyBehavior.gd" id="1_5rjw8"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_5rjw8")
 metadata/_custom_type_script = "uid://c3a4cvjb7c0uc"

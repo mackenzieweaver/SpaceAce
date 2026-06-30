@@ -70,7 +70,7 @@ func spawn_enemies(
 	timer.start()
 
 func _on_tie_timer_timeout() -> void:
-	pass
+	spawn_enemies(TIE_FIGHTER, 1.5, x_range, y_range, Vector2i(2, 3), tie_timer)
 
 func _on_asteroid_timer_timeout() -> void:
 	spawn_enemies(ASTEROID, 2.5, x_range, y_range, Vector2i(2, 3), asteroid_timer)
