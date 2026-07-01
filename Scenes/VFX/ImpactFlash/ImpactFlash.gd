@@ -1,3 +1,4 @@
+class_name ImpactFlash
 extends GPUParticles3D
 
 @onready var impact_sound: AudioStreamPlayer3D = $ImpactSound

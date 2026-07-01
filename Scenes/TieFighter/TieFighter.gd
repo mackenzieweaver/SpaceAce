@@ -20,11 +20,15 @@ const BEHAVIORS = [
 @onready var player_ref: LinkPlayer = $PlayerRef
 @onready var gun: Gun = $Pivot/Gun
 
+static var ships_spawned: int = 0
+static var ships_killed: int = 0
+
 
 func _ready() -> void:
+	ships_spawned += 1
 	if !enemy_behavior:
-		var random_behavior = BEHAVIORS.pick_random() as PackedScene
-		enemy_behavior = random_behavior.duplicate(true) as EnemyBehavior
+		var random_behavior = BEHAVIORS.pick_random()
+		enemy_behavior = random_behavior.duplicate(true)
 	enemy_behavior.setup(self)
 
 
@@ -35,4 +39,31 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit_box_died() -> void:
+	ships_killed += 1
 	queue_free()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

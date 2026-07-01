@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cnqx0hdt5etv3"]
+
+[ext_resource type="Script" uid="uid://c2p4ogqkt4l6i" path="res://Scenes/GameUi/PauseMenuStat/PauseMenuStat.gd" id="1_ug2ff"]
+[ext_resource type="LabelSettings" uid="uid://cg7qig2uq4s3y" path="res://Resources/NormalLabel.tres" id="2_8kg1s"]
+
+[node name="PauseMenuStat" type="HBoxContainer" unique_id=4704410]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ug2ff")
+
+[node name="Title" type="Label" parent="." unique_id=1450585471]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "placeholder text"
+label_settings = ExtResource("2_8kg1s")
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="." unique_id=1396154100]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "placeholder text"
+label_settings = ExtResource("2_8kg1s")
+horizontal_alignment = 2
+vertical_alignment = 1
