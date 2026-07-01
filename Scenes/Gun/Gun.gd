@@ -5,7 +5,7 @@ class_name Gun
 @export var debounce: float = 0.18
 @export var sound_effect: AudioStream
 @export var muzzles: Array[Node3D]
-@export var laser_type := Spawner.LaserTypes.PlayerLaser
+@export var laser_type := Spawner.LaserTypes.TieLaser
 
 
 const GUN_FLASH = preload("res://Scenes/VFX/GunFlash/GunFlash.tscn")

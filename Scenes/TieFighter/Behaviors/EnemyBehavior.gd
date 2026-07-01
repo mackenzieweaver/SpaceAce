@@ -8,6 +8,7 @@ extends Resource
 
 var _player_ref: LinkPlayer
 var _can_play_engine_sound: bool = true
+var _can_shoot: bool = true
 
 
 var owner: TieFighter:
@@ -21,21 +22,27 @@ func setup(p_owner: TieFighter) -> void:
 
 
 func update(delta: float) -> void:
-	if owner.stay_still: return
-	
-	# Move
-	owner.translate(Vector3.FORWARD * speed * delta)
+	if !owner.stay_still:
+		# Move
+		owner.translate(Vector3.FORWARD * speed * delta)
 	
 	var _within_distance = _player_ref.player_less_than_distance(
 		owner.global_position,
 		engine_sound_distance
 	)
 	
-	if _within_distance:
-		# Play sound
-		if _can_play_engine_sound:
-			owner.engine.play()
-			_can_play_engine_sound = false
+	if !_within_distance: return
+	
+	# Shoot once
+	if _can_shoot:
+		face_player()
+		shoot()
+		_can_shoot = false
+	
+	# Play sound
+	if _can_play_engine_sound:
+		owner.engine.play()
+		_can_play_engine_sound = false
 
 
 func face_player():

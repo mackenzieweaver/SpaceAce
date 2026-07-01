@@ -52,3 +52,4 @@ script = ExtResource("2_g5rdf")
 
 [node name="ImpactSound" type="AudioStreamPlayer3D" parent="." unique_id=343728646]
 stream = ExtResource("3_fbdr6")
+volume_db = 15.0

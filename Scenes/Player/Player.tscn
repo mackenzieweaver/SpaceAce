@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://djqjpd2uqs5wb" path="res://Scenes/Gun/Gun.tscn" id="4_jmcll"]
 [ext_resource type="AudioStream" uid="uid://odqg565qvaui" path="res://Assets/Audio/Effects/Blaster1_short.wav" id="5_4wape"]
 [ext_resource type="PackedScene" uid="uid://cvwvs5b223kav" path="res://Scenes/VFX/ImpactFlash/ImpactFlash.tscn" id="6_4wape"]
+[ext_resource type="PackedScene" uid="uid://dwra642duwfce" path="res://Scenes/GameUi/HealthBar/HealthBar.tscn" id="7_t26db"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04r6b"]
 resource_name = "Material-3"
@@ -99,5 +100,15 @@ shape = SubResource("ConcavePolygonShape3D_jmcll")
 visible = false
 one_off = false
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=245379239]
+
+[node name="HealthBar" parent="CanvasLayer" unique_id=48631240 instance=ExtResource("7_t26db")]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 392.0
+offset_bottom = 72.0
+tint_progress = Color(0, 1, 0, 1)
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="finished" from="ImpactFlash" to="." method="_on_impact_flash_finished"]

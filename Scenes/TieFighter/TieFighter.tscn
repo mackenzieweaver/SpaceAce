@@ -136,7 +136,6 @@ mesh = SubResource("ArrayMesh_r8dr8")
 
 [node name="Gun" parent="Pivot" unique_id=1523439087 node_paths=PackedStringArray("muzzles") instance=ExtResource("10_fkool")]
 muzzles = [NodePath("../Muzzle1"), NodePath("../Muzzle2")]
-laser_type = 1
 
 [node name="Muzzle1" type="Node3D" parent="Pivot" unique_id=1600339930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -0.45)

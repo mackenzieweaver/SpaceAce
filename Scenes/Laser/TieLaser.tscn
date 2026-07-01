@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cjgs51mk038ab" path="res://Scenes/Laser/Laser.tscn" id="1_u35ir"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u35ir"]
+radius = 0.16
+height = 1.8
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al5as"]
 shading_mode = 0
 albedo_color = Color(2.454227, 0, 0.19641912, 1)
@@ -14,6 +18,10 @@ height = 1.5
 [node name="TieLaser" unique_id=2018984345 instance=ExtResource("1_u35ir")]
 collision_layer = 2
 collision_mask = 192
+
+[node name="CollisionShape3D" parent="." index="1" unique_id=466616501]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u35ir")
 
 [node name="Mesh" type="MeshInstance3D" parent="." index="3" unique_id=711133479]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)

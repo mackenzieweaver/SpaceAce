@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func blow_up() -> void:
+	print('laser hit player')
 	SignalHub.spawn.emit(global_position, IMPACT_FLASH)
 	stop()
 
