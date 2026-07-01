@@ -1,15 +1,15 @@
 class_name Player
 extends CharacterBody3D
 
-
 const GROUP_PLAYER: String = "player"
-
 
 @onready var pivot: Node3D = $Pivot
 @onready var gun: Gun = $Pivot/Gun
 @onready var impact_flash: ImpactFlash = $ImpactFlash
 @onready var health_bar: HealthBar = $CanvasLayer/HealthBar
 
+@export var max_health: float = 100.0
+@export var health: float
 
 @export var fly_speed: float = 30.0
 @export var roll_speed: float = 25.0
@@ -20,6 +20,12 @@ const GROUP_PLAYER: String = "player"
 
 
 static var game_time: float = 0
+
+
+func _ready() -> void:
+	health_bar.value = max_health
+	health = max_health
+	game_time = 0
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -51,21 +57,23 @@ func _physics_process(delta: float) -> void:
 	game_time += delta
 
 
-func take_damage(v: int, pos: Vector3):
+func take_damage(v: int):
+	health -= v
 	health_bar.dec_health(v)
+	
+	if health <= 0:
+		SignalHub.game_over.emit()
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	var pos: Vector3 = area.global_position
 	if area is Laser:
-		var laser = area as Laser
-		take_damage(laser.damage, pos)
+		take_damage(area.damage)
 	elif area is HitBox:
-		take_damage(debris_damage, pos)
+		take_damage(debris_damage)
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	take_damage(debris_damage, body.global_position)
+func _on_area_3d_body_entered(_body: Node3D) -> void:
+	take_damage(debris_damage)
 
 
 func _on_impact_flash_finished() -> void:

@@ -1,7 +1,6 @@
 class_name GameUi
 extends Control
 
-
 @onready var game_over: ColorRect = $GameOver
 @onready var label: Label = $GameOver/VB/Label
 @onready var game_over_scored: Label = $GameOver/VB/GameOverScored
@@ -14,16 +13,24 @@ extends Control
 @onready var power_ups_stat: PauseMenuStat = $PauseMenu/VB/VBoxContainer/PowerUpsStat
 @onready var game_time_stat: PauseMenuStat = $PauseMenu/VB/VBoxContainer/GameTimeStat
 
+
 func _ready() -> void:
-	get_tree().paused = false
+	SignalHub.game_over.connect(on_game_over)
+	Asteroid.asteroids_spawned = 0
+	Asteroid.asteroids_killed = 0
+	TieFighter.ships_spawned = 0
+	TieFighter.ships_killed = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is not InputEventKey: return
-	if !event.is_action_pressed("pause"): return
 	
-	var paused = handle_pausing()
-	if paused: update_stats()
+	if event.is_action_pressed("pause"):
+		var paused = handle_pausing()
+		if paused: update_stats()
+	
+	if event.is_action_pressed("shoot") and game_over.visible:
+		get_tree().reload_current_scene()
 
 
 func handle_pausing():
@@ -53,7 +60,8 @@ func update_stats():
 	)
 
 
-
+func on_game_over():
+	game_over.show()
 
 
 
